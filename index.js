@@ -7,6 +7,10 @@ app.use(exp.json())
 
 let modelProducto=require('./backend/models/products.model')
 
+app.get('/listarproducto',(req,res)=>{
+    
+})
+
 app.listen(process.env.PORT,()=>{
     console.log("servidor en linea")
 })
