@@ -1,0 +1,15 @@
+{
+  "name": "apinode",
+  "version": "1.0.0",
+  "description": "prueba de apis en node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index"
+  },
+  "author": "Daniel",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9"
+  }
+}
