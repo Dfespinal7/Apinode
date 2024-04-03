@@ -11,7 +11,7 @@ const schemaProducto= new mongoose.Schema({
     },
     descripcion:{
         type:String,
-        required:[true,"la decripcion es obligatoria es obligatoria"]
+        required:[true,"la descripcion es obligatoria es obligatoria"]
     },
     precio:{
         type:Number,
