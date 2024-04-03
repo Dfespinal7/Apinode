@@ -64,7 +64,7 @@ app.delete('/productos/:id',async(req,res)=>{
     console.log(req.params.id,req.body.referenciaProducto)
     let eliminacion=await modelProducto.findOneAndDelete({referencia:req.params.id})
     if(eliminacion)
-        res.status(200).json({"mensaje":"eliminacion exitosa, gracias"})
+        res.status(200).json({"mensaje":"eliminacion exitosa, gracias, vuelve pronto"})
     else
         res.status(404).json({"mensaje":"se presentó un error"})
 })
