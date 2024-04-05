@@ -5,12 +5,23 @@ app.use(logger('dev'))
 app.use(exp.urlencoded({extended:false}))
 app.use(exp.json())
 
+const path=require("path")
+
+app.use(exp.static(path.join(__dirname, './static')))
+
+app.set('view engine','ejs')
+
+app.set('views',path.join(__dirname,'./frontend/views'))
+
 let modelProducto=require('./backend/models/products.model')
+
 
 app.get('/productos',async(req,res)=>{
     let listarproductos=await modelProducto.find();
     if(listarproductos)
-        res.status(200).json(listarproductos)
+        res.render('assets/listar_producto',
+    {
+    "listarProductos":listarproductos})
     else
         res.status(404).json({error:"no se encontraron productos"})
     
@@ -43,7 +54,7 @@ app.post('/productos',async(req,res)=>{
 })
 
 
-app.put('/productos:ref',async(req,res)=>{
+app.put('/eproductos:ref',async(req,res)=>{
     const productoEditado={
         referencia:req.params.ref,
         nombre:req.body.nombreProducto,
@@ -60,7 +71,7 @@ app.put('/productos:ref',async(req,res)=>{
         res.status(404).json({"mensaje":"se presentó un error"})
 })
 
-app.delete('/productos/:id',async(req,res)=>{
+app.delete('/dproductos/:id',async(req,res)=>{
     console.log(req.params.id,req.body.referenciaProducto)
     let eliminacion=await modelProducto.findOneAndDelete({referencia:req.params.id})
     if(eliminacion)
@@ -68,6 +79,11 @@ app.delete('/productos/:id',async(req,res)=>{
     else
         res.status(404).json({"mensaje":"se presentó un error"})
 })
+
+app.get('/formulario',(req,res)=>{
+    res.render('assets/form_registro')
+})
+
 
 app.listen(process.env.PORT,()=>{
     console.log("servidor en linea")
